@@ -2,7 +2,7 @@
 using CleanArchMvcBallastLane.Application.Users.Create;
 using System.ComponentModel.DataAnnotations;
 
-namespace CleanArchMvcBallastLane.API.Request;
+namespace CleanArchMvcBallastLane.API.Models.Requests;
 public class LoginRequest
 {
     [Required(ErrorMessage = "Email is required")]

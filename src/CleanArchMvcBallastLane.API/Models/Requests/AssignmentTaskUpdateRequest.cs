@@ -1,10 +1,10 @@
-﻿using CleanArchMvcBallastLane.Application.AssignmentTasks.Create;
+﻿using CleanArchMvcBallastLane.Application.AssignmentTasks.Update;
 using CleanArchMvcBallastLane.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace CleanArchMvcBallastLane.API.Request;
-
-public record AssignmentTaskCreateRequest
+namespace CleanArchMvcBallastLane.API.Models.Requests;
+public record AssignmentTaskUpdateRequest
 {
     [Required(ErrorMessage = "The title is Required")]
     [MinLength(3)]
@@ -18,12 +18,15 @@ public record AssignmentTaskCreateRequest
 
     public Status Status { get; init; }
 
+    [JsonIgnore]
+    public string? CreatedBy { get; set; }
 
-    public AssignmentTaskCreateCommand ToCommand(string createdBy)
+    public AssignmentTaskUpdateCommand ToCommand(int id)
     {
-        return new AssignmentTaskCreateCommand()
+        return new AssignmentTaskUpdateCommand()
         {
-            CreatedBy = createdBy,
+            Id = id,
+            CreatedBy = CreatedBy,
             Status = Status,
             Description = Description,
             Title = Title

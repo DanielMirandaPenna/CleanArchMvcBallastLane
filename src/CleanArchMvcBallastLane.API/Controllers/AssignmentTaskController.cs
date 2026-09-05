@@ -1,5 +1,5 @@
-﻿using CleanArchMvcBallastLane.API.Request;
-using CleanArchMvcBallastLane.API.Responses;
+﻿using CleanArchMvcBallastLane.API.Models.Requests;
+using CleanArchMvcBallastLane.API.Models.Responses;
 using CleanArchMvcBallastLane.Application.AssignmentTasks.Get;
 using CleanArchMvcBallastLane.Application.AssignmentTasks.GetById;
 using CleanArchMvcBallastLane.Application.AssignmentTasks.GetByStatus;

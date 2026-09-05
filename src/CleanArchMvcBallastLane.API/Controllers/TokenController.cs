@@ -1,5 +1,5 @@
-﻿using CleanArchMvcBallastLane.API.Request;
-using CleanArchMvcBallastLane.API.Responses;
+﻿using CleanArchMvcBallastLane.API.Models.Requests;
+using CleanArchMvcBallastLane.API.Models.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

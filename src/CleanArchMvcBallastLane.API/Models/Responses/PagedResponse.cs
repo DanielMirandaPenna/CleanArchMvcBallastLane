@@ -1,4 +1,4 @@
-namespace CleanArchMvcBallastLane.API.Responses
+namespace CleanArchMvcBallastLane.API.Models.Responses
 {
     public class PagedResponse<T>
     {

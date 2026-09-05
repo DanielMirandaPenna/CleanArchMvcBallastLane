@@ -6,5 +6,9 @@
     <Project Path="src/CleanArchMvcBallastLane.Infra.Data/CleanArchMvcBallastLane.Infra.Data.csproj" />
     <Project Path="src/CleanArchMvcBallastLane.Infra.IoC/CleanArchMvcBallastLane.Infra.IoC.csproj" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/CleanArchMvcBallastLane.API.Tests/CleanArchMvcBallastLane.API.Tests.csproj" Id="c01419c8-504b-4f4d-9fe3-fd14010d148a" />
+    <Project Path="tests/CleanArchMvcBallastLane.Application.Tests/CleanArchMvcBallastLane.Application.Tests.csproj" Id="3535b057-d51c-473e-bfb7-2c3b737768f6" />
+    <Project Path="tests/CleanArchMvcBallastLane.Domain.Tests/CleanArchMvcBallastLane.Domain.Tests.csproj" Id="9f6e384f-1bf0-4923-ac23-5d67c450fa32" />
+  </Folder>
 </Solution>

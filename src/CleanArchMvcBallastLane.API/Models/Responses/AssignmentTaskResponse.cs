@@ -1,7 +1,7 @@
 ﻿using CleanArchMvcBallastLane.Domain.Entities;
 using CleanArchMvcBallastLane.Domain.Enums;
 
-namespace CleanArchMvcBallastLane.API.Responses;
+namespace CleanArchMvcBallastLane.API.Models.Responses;
 public class AssignmentTaskResponse
 {
     public int Id { get; set; }
