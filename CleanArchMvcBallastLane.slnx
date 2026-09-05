@@ -1,6 +1,10 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/CleanArchMvcBallastLane.API/CleanArchMvcBallastLane.API.csproj" />
+    <Project Path="src/CleanArchMvcBallastLane.Application/CleanArchMvcBallastLane.Application.csproj" />
+    <Project Path="src/CleanArchMvcBallastLane.Domain/CleanArchMvcBallastLane.Domain.csproj" />
+    <Project Path="src/CleanArchMvcBallastLane.Infra.Data/CleanArchMvcBallastLane.Infra.Data.csproj" />
+    <Project Path="src/CleanArchMvcBallastLane.Infra.IoC/CleanArchMvcBallastLane.Infra.IoC.csproj" />
   </Folder>
   <Folder Name="/tests/" />
 </Solution>
