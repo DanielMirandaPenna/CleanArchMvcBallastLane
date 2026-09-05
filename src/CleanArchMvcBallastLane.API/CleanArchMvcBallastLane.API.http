@@ -1,0 +1,6 @@
+@CleanArchMvcBallastLane.API_HostAddress = http://localhost:5152
+
+GET {{CleanArchMvcBallastLane.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

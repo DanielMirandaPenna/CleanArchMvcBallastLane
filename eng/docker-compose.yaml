@@ -1,0 +1,21 @@
+services:
+  postgres:
+    container_name: clean-arch-postgres
+    image: postgres:16-alpine
+    volumes:
+      - database-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: cleanarchmvcballast
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 15433:5432
+    networks:
+      - clean-arch
+
+networks:
+  clean-arch:
+    driver: bridge
+
+volumes:
+  database-volume: null
