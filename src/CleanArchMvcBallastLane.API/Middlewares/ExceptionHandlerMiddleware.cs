@@ -55,6 +55,7 @@ public sealed class ExceptionHandlerMiddleware(ILogger<ExceptionHandlerMiddlewar
             DomainExceptionValidation => StatusCodes.Status400BadRequest,
             ApplicationException => StatusCodes.Status400BadRequest,
             BadHttpRequestException => StatusCodes.Status400BadRequest,
+            KeyNotFoundException => StatusCodes.Status404NotFound,
             _ => StatusCodes.Status500InternalServerError
         };
 

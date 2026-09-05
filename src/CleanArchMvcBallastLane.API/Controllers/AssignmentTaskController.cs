@@ -62,8 +62,8 @@ namespace CleanArchMvcBallastLane.API.Controllers
         }
 
         [HttpGet()]
-        [Route("{id}/GetTaskByStatus")]
-        public async Task<ActionResult<AssignmentTaskResponse>> GetByStatus(Status status)
+        [Route("GetTaskByStatus")]
+        public async Task<ActionResult<AssignmentTaskResponse>> GetByStatus([FromQuery] Status status)
         {
             var query = new GetAssignmentTaskByIdStatusQuery(status);
             var result = await _mediator.Send(query);

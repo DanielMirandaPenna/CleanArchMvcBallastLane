@@ -1,5 +1,4 @@
 ﻿using CleanArchMvcBallastLane.Application.AssignmentTasks.Create;
-using CleanArchMvcBallastLane.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace CleanArchMvcBallastLane.API.Models.Requests;
@@ -16,15 +15,11 @@ public record AssignmentTaskCreateRequest
     [MaxLength(200)]
     public string Description { get; init; }
 
-    public Status Status { get; init; }
-
-
     public AssignmentTaskCreateCommand ToCommand(string createdBy)
     {
         return new AssignmentTaskCreateCommand()
         {
             CreatedBy = createdBy,
-            Status = Status,
             Description = Description,
             Title = Title
         };

@@ -121,8 +121,7 @@ public class AssignmentTaskControllerTests
         var result = await controller.Post(new AssignmentTaskCreateRequest
         {
             Title = "Task title",
-            Description = "Task description",
-            Status = Status.Pending
+            Description = "Task description"
         });
 
         var created = result.Should().BeOfType<CreatedAtRouteResult>().Subject;
@@ -165,6 +164,19 @@ public class AssignmentTaskControllerTests
 
         result.Result.Should().BeOfType<OkResult>();
         mediator.Verify(x => x.Send(It.Is<AssignmentTaskRemoveCommand>(c => c.Id == 5), It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task Should_PropagateApplicationException_When_GetByIdTaskDoesNotExist()
+    {
+        var mediator = new Mock<IMediator>();
+        mediator.Setup(x => x.Send(It.Is<GetAssignmentTaskByIdQuery>(q => q.Id == 999), It.IsAny<CancellationToken>()))
+            .ThrowsAsync(new ApplicationException("Entity could not be found."));
+        var controller = CreateController(mediator);
+
+        var action = () => controller.Get(999);
+
+        await action.Should().ThrowAsync<ApplicationException>().WithMessage("Entity could not be found.");
     }
 
     private static AssignmentTask CreateTask(int id)

@@ -18,7 +18,12 @@ namespace CleanArchMvcBallastLane.Application.AssignmentTasks.GetById
 
         public async Task<AssignmentTask> Handle(GetAssignmentTaskByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _assignmentTaskRepository.GetById(request.Id);
+            var assignmentTask = await _assignmentTaskRepository.GetById(request.Id);
+
+            if (assignmentTask == null)
+                throw new KeyNotFoundException($"AssignmentTask with ID '{request.Id}' was not found.");
+
+            return assignmentTask;
         }
     }
 }

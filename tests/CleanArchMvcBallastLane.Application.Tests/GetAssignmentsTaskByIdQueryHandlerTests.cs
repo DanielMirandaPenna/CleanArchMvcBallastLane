@@ -23,4 +23,15 @@ public sealed class GetAssignmentsTaskByIdQueryHandlerTests(PostgreSqlFixture fi
 
         result.Should().BeEquivalentTo(expected, options => options.Excluding(task => task.CreatedAt));
     }
+
+    [Fact]
+    public async Task Should_ThrowApplicationException_When_TaskDoesNotExist()
+    {
+        await using var context = fixture.CreateContext();
+        var handler = new GetAssignmentsTaskByIdQueryHandler(new AssignmentTaskRepository(context));
+
+        var action = () => handler.Handle(new GetAssignmentTaskByIdQuery(999999), CancellationToken.None);
+
+        await action.Should().ThrowAsync<KeyNotFoundException>().WithMessage("AssignmentTask with ID '999999' was not found.");
+    }
 }

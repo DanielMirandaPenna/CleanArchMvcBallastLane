@@ -35,6 +35,6 @@ public sealed class AssignmentTaskRemoveCommandHandlerTests(PostgreSqlFixture fi
 
         var action = () => handler.Handle(new AssignmentTaskRemoveCommand(999999), CancellationToken.None);
 
-        await action.Should().ThrowAsync<ApplicationException>().WithMessage("Entity could not be found.");
+        await action.Should().ThrowAsync<KeyNotFoundException>().WithMessage("AssignmentTask with ID '999999' was not found.");
     }
 }

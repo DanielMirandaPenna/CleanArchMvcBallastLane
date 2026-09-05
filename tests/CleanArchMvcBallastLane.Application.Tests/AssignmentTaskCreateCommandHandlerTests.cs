@@ -21,8 +21,7 @@ public sealed class AssignmentTaskCreateCommandHandlerTests(PostgreSqlFixture fi
         {
             Title = "Created task",
             Description = "Created description",
-            CreatedBy = "user-1",
-            Status = Status.Pending
+            CreatedBy = "user-1"
         };
 
         var result = await handler.Handle(command, CancellationToken.None);

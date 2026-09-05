@@ -14,14 +14,13 @@ public class AssignmentTaskRequestTests
     [Fact]
     public void Should_MapAllFieldsAndUser_When_AssignmentTaskCreateRequestIsValid()
     {
-        var request = new AssignmentTaskCreateRequest { Title = "Title", Description = "Description", Status = Status.Pending };
+        var request = new AssignmentTaskCreateRequest { Title = "Title", Description = "Description" };
 
         var command = request.ToCommand("user-1");
 
         command.Should().BeOfType<AssignmentTaskCreateCommand>();
         command.Title.Should().Be(request.Title);
         command.Description.Should().Be(request.Description);
-        command.Status.Should().Be(request.Status);
         command.CreatedBy.Should().Be("user-1");
     }
 

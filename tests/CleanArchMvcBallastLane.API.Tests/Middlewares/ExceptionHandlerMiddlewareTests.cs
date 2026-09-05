@@ -15,6 +15,7 @@ public class ExceptionHandlerMiddlewareTests
     [Theory]
     [InlineData(typeof(ArgumentException), 400, "An unexpected error occurred. Please try again later.", LogLevel.Error)]
     [InlineData(typeof(ArgumentNullException), 400, "An unexpected error occurred. Please try again later.", LogLevel.Error)]
+    [InlineData(typeof(KeyNotFoundException), 404, "An unexpected error occurred. Please try again later.", LogLevel.Error)]
     [InlineData(typeof(BadHttpRequestException), 400, "invalid request", LogLevel.Error)]
     [InlineData(typeof(DomainExceptionValidation), 400, "domain failure", LogLevel.Warning)]
     [InlineData(typeof(ApplicationException), 400, "application failure", LogLevel.Warning)]
@@ -92,6 +93,7 @@ public class ExceptionHandlerMiddlewareTests
         var t when t == typeof(BadHttpRequestException) => new BadHttpRequestException("invalid request"),
         var t when t == typeof(DomainExceptionValidation) => new DomainExceptionValidation("domain failure"),
         var t when t == typeof(ApplicationException) => new ApplicationException("application failure"),
+        var t when t == typeof(KeyNotFoundException) => new KeyNotFoundException("not found"),
         _ => new InvalidOperationException("unexpected failure")
     };
 }

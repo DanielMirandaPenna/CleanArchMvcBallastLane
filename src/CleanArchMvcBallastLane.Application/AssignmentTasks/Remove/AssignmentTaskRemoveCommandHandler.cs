@@ -15,7 +15,7 @@ namespace CleanArchMvcBallastLane.Application.AssignmentTasks.Remove
             var assignmentTask = await assignmentTaskRepository.GetById(request.Id);
 
             if (assignmentTask == null)
-                throw new ApplicationException($"Entity could not be found.");
+                throw new KeyNotFoundException($"AssignmentTask with ID '{request.Id}' was not found.");
 
             return await assignmentTaskRepository.RemoveAsync(assignmentTask);
         }
