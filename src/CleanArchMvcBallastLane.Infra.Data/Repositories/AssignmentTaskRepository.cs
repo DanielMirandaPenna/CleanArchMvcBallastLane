@@ -30,6 +30,18 @@ namespace CleanArchMvcBallastLane.Infra.Data.Repositories
             return await _context.AssignmentTasks.AsNoTracking().ToListAsync();
         }
 
+        public async Task<(IEnumerable<AssignmentTask> Items, int TotalCount)> GetAssignmentTasksPaged(int pageNumber, int pageSize)
+        {
+            var totalCount = await _context.AssignmentTasks.CountAsync();
+            var items = await _context.AssignmentTasks
+                .AsNoTracking()
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (items, totalCount);
+        }
+
         public async Task<AssignmentTask> GetById(int id)
         {
             return await _context.AssignmentTasks.FirstOrDefaultAsync(p => p.Id == id);

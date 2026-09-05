@@ -15,5 +15,6 @@ namespace CleanArchMvcBallastLane.Domain.Interfaces
         Task<IEnumerable<AssignmentTask>> GetByUserId(string userId);
         Task<IEnumerable<AssignmentTask>> GetByStatus(Status status);
         Task<IEnumerable<AssignmentTask>> GetAssignmentTasks();
+        Task<(IEnumerable<AssignmentTask> Items, int TotalCount)> GetAssignmentTasksPaged(int pageNumber, int pageSize);
     }
 }

@@ -26,11 +26,21 @@ namespace CleanArchMvcBallastLane.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AssignmentTaskResponse>>> Get()
+        public async Task<ActionResult<PagedResponse<AssignmentTaskResponse>>> Get(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
-            var query = new GetAssignmentsTasksQuery();
+            var query = new GetAssignmentsTasksQuery { PageNumber = pageNumber, PageSize = pageSize };
             var result = await _mediator.Send(query);
-            return Ok(result.Select(AssignmentTaskResponse.ToResponse));
+
+            return Ok(new PagedResponse<AssignmentTaskResponse>
+            {
+                Items = result.Items.Select(AssignmentTaskResponse.ToResponse),
+                TotalCount = result.TotalCount,
+                PageNumber = result.PageNumber,
+                PageSize = result.PageSize,
+                TotalPages = result.TotalPages
+            });
         }
 
 

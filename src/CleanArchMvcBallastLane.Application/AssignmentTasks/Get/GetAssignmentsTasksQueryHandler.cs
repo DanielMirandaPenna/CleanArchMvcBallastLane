@@ -1,13 +1,11 @@
-﻿using CleanArchMvcBallastLane.Domain.Entities;
+﻿using CleanArchMvcBallastLane.Application.Common;
+using CleanArchMvcBallastLane.Domain.Entities;
 using CleanArchMvcBallastLane.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchMvcBallastLane.Application.AssignmentTasks.Get
 {
-    public class GetAssignmentsTasksQueryHandler : IRequestHandler<GetAssignmentsTasksQuery, IEnumerable<AssignmentTask>>
+    public class GetAssignmentsTasksQueryHandler : IRequestHandler<GetAssignmentsTasksQuery, PagedResult<AssignmentTask>>
     {
         private readonly IAssignmentTaskRepository _assignmentTaskRepository;
 
@@ -16,9 +14,17 @@ namespace CleanArchMvcBallastLane.Application.AssignmentTasks.Get
             _assignmentTaskRepository = productRepository;
         }
 
-        public async Task<IEnumerable<AssignmentTask>> Handle(GetAssignmentsTasksQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResult<AssignmentTask>> Handle(GetAssignmentsTasksQuery request, CancellationToken cancellationToken)
         {
-            return await _assignmentTaskRepository.GetAssignmentTasks();
+            var (items, totalCount) = await _assignmentTaskRepository.GetAssignmentTasksPaged(request.PageNumber, request.PageSize);
+
+            return new PagedResult<AssignmentTask>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize
+            };
         }
     }
 }

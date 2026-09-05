@@ -1,12 +1,12 @@
-﻿using CleanArchMvcBallastLane.Domain.Entities;
+﻿using CleanArchMvcBallastLane.Application.Common;
+using CleanArchMvcBallastLane.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchMvcBallastLane.Application.AssignmentTasks.Get
 {
-    public class GetAssignmentsTasksQuery : IRequest<IEnumerable<AssignmentTask>>
+    public class GetAssignmentsTasksQuery : IRequest<PagedResult<AssignmentTask>>
     {
+        public int PageNumber { get; set; } = 1;
+        public int PageSize { get; set; } = 10;
     }
 }
